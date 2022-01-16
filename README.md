@@ -9,6 +9,7 @@
 ## Rust
 
 Rust docs: https://doc.rust-lang.org/book/
+Rust frameworks, libraries etc: https://serokell.io/blog/open-source-rust
 
 ## EVM
 
