@@ -1,7 +1,15 @@
-# web3, rust, evm etc.
+# Web3, Rust, EVM etc.
 
 ---
 
+## Interesting Web3 links/stuff.
+
+??
+
 ## Rust
 
-rust docs: https://doc.rust-lang.org/book/
+Rust docs: https://doc.rust-lang.org/book/
+
+## EVM
+
+EVM docs: https://ethereum.org/en/developers/docs/evm/
