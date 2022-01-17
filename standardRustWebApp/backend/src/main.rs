@@ -1,32 +1,40 @@
-use actix_web::{web, App, HttpRequest, HttpServer, Responder};
+use chrono::*;
+use std::fs::File;
+use std::io::prelude::*;
 
-async fn greet(req: HttpRequest) -> impl Responder {
-    number();
-    let name= req.match_info().get("name").unwrap_or("World");
-    format!("Hello {}!", &name)
+fn get_time() {
+    let utc: DateTime<Local> = Local::now();
+    println!("{utc}");
 }
 
-fn number(){
-    let mut number: i32= 0;
-    while &number < &100000000 {
-        if (number % 1000000)==0
-        {
-            println!("{}",&number);
-        }
-        number+=1;
-    }
-    println!("Done: {}",&number);
+fn write_to_file(filename: &str, input: &'static [u8]) -> std::io::Result<()> {
+    let mut create_file = File::create(filename)?;
+    create_file.write_all(input)?;
+    Ok(())
 }
 
-#[actix_web::main]
-async fn main() -> std::io::Result<()> {
-    
-    HttpServer::new(|| {
-        App::new()
-        .route("/", web::get().to(greet))
-        .route("/{name}", web::get().to(greet))
-    })
-    .bind(("127.0.0.1", 8080))?
-    .run()
-    .await
+fn open_and_read_file(filename: &str) -> std::io::Result<()> {
+    let mut open_file = File::open(filename)?;
+    let mut contents = String::new();
+    open_file.read_to_string(&mut contents)?;
+    println!("{contents}");
+    Ok(())
+}
+
+fn main() {
+    // Write file
+    /* let mut create_file = File::create("test.txt")?;
+    create_file.write_all(b"Det her er en test :D for satan")?; */
+    //
+    // Read file and print contents
+    let filename = "test.txt";
+    match write_to_file(filename, b"Det her er en test :D for satan jo") {
+        Ok(..) => println!("File created"),
+        Err(..) => println!("Something went wrong"),
+    };
+    match open_and_read_file(filename) {
+        Ok(..) => println!("File read"),
+        Err(..) => println!("Something went wrong"),
+    };
+    //
 }
