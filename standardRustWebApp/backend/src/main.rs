@@ -27,7 +27,7 @@ fn main() {
     create_file.write_all(b"Det her er en test :D for satan")?; */
     //
     // Read file and print contents
-    let filename = "test.txt";
+    //let filename = get_time();
     match write_to_file(filename, b"Det her er en test :D for satan jo") {
         Ok(..) => println!("File created"),
         Err(..) => println!("Something went wrong"),
